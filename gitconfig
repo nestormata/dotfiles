@@ -2,7 +2,7 @@
   defaultBranch = main
   templatedir = ~/.git_template
 [push]
-  default = current
+  default = simple
 [color]
   ui = auto
 [alias]
@@ -13,6 +13,9 @@
   co = checkout
   pf = push --force-with-lease
   st = status
+  up = !git fetch origin && git rebase origin/master
+  s = status -s
+  lg = log --oneline --decorate --all --graph
 [core]
   excludesfile = ~/.gitignore
   autocrlf = input
@@ -24,6 +27,10 @@
   prune = true
 [rebase]
   autosquash = true
+[pull]
+  rebase = true
+[rerere]
+  enabled = true
 [include]
   path = ~/.gitconfig.local
 [diff]
