@@ -4,6 +4,10 @@
 [push]
   default = simple
 [color]
+  branch = auto
+  diff = auto
+  interactive = auto
+  status = auto
   ui = auto
 [alias]
   aa = add --all
@@ -16,8 +20,10 @@
   up = !git fetch origin && git rebase origin/master
   s = status -s
   lg = log --oneline --decorate --all --graph
+  lol = log --graph --decorate --pretty=oneline --abbrev-commit
+  lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
 [core]
-  excludesfile = ~/.gitignore
+  excludesfile = /Users/nestor/.gitignore_global
   autocrlf = input
 [merge]
   ff = only
