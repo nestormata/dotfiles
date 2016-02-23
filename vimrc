@@ -1,3 +1,12 @@
+" NOTES AND TIPS
+"====================================================="
+" - Press 'zz' to instantly center the line where the cursor is into the center
+"   of the screen
+" - :Ag to search in the project directory
+" - :Gsearch to search and replace in the project directory
+"====================================================="
+
+
 " Leader
 fun! MySys()
   return "mac"
@@ -16,9 +25,10 @@ nmap <leader>w :w!<cr>
 
 " Fast editing of the .vimrc
 map <leader>e :e! ~/.vimrc.local<cr>
+map <leader>i :e! ~/.vimrc<cr>
 
 " When vimrc is edited, reload it
-autocmd! bufwritepost vimrc source ~/.vimrc
+autocmd! bufwritepost .vimrc* source ~/.vimrc
 
 set nobackup
 set nowritebackup
@@ -121,34 +131,34 @@ set numberwidth=5
 " Tab completion
 " will insert tab at beginning of line,
 " will use completion if not at beginning
-set wildmode=list:longest,list:full
-function! InsertTabWrapper()
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-        return "\<tab>"
-    else
-        return "\<c-p>"
-    endif
-endfunction
-inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
-inoremap <S-Tab> <c-n>
+" set wildmode=list:longest,list:full
+" function! InsertTabWrapper()
+"     let col = col('.') - 1
+"     if !col || getline('.')[col - 1] !~ '\k'
+"         return "\<tab>"
+"     else
+"         return "\<c-p>"
+"     endif
+" endfunction
+" inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
+" inoremap <S-Tab> <c-n>
+
+" Exclude Javascript files in :Rtags via rails.vim due to warnings when parsing
+let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"
+
+" Index ctags from any project, including those outside Rails
+map <Leader>ct :!ctags -R --exclude='node_modules/**' --exclude='build/**' --exclude='*.js' .<CR>
 
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
 
-" Get off my lawn
-nnoremap <Left> :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up> :echoe "Use k"<CR>
-nnoremap <Down> :echoe "Use j"<CR>
-
 " vim-rspec mappings
-nnoremap <Leader>t :call RunCurrentSpecFile()<CR>
-nnoremap <Leader>s :call RunNearestSpec()<CR>
-nnoremap <Leader>l :call RunLastSpec()<CR>
+"nnoremap <Leader>t :call RunCurrentSpecFile()<CR>
+"nnoremap <Leader>s :call RunNearestSpec()<CR>
+"nnoremap <Leader>l :call RunLastSpec()<CR>
 
 " Run commands that require an interactive shell
-nnoremap <Leader>r :RunInInteractiveShell<space>
+nnoremap <Leader>ri :RunInInteractiveShell<space>
 
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
@@ -164,17 +174,23 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
 " configure syntastic syntax checking to check on open as well as save
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_wq = 0
 let g:syntastic_check_on_open=1
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
 let g:syntastic_eruby_ruby_quiet_messages =
     \ {"regex": "possibly useless use of a variable in void context"}
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
 " Set spellfile to location that is guaranteed to exist, can be symlinked to
 " Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.
-set spellfile=$HOME/.vim-spell-en.utf-8.add
+"set spellfile=$HOME/.vim-spell-en.utf-8.add
 
 " Autocomplete with dictionary words when spell check is on
-set complete+=kspell
+"set complete+=kspell
 
 " Always use vertical diffs
 set diffopt+=vertical
@@ -281,7 +297,7 @@ map <C-l> <C-W>l
 map <leader>bd :Bclose<cr>
 
 " Close all the buffers
-map <leader>ba :1,300 bd!<cr>
+map <leader>ba :bufdo bd!<cr>
 
 " Use the arrows to something usefull
 map <right> :bn<cr>
@@ -426,11 +442,46 @@ autocmd BufRead,BufNew :call UMiniBufExplorer
 
 map <leader>u :TMiniBufExplorer<cr>:TMiniBufExplorer<cr>
 
+"===========CUSTOM MAPPINGS========="
+nmap <Leader><space> :nohlsearch<cr>
+nmap <Leader>t :NERDTreeToggle<cr>
+nmap <Leader>r :CtrlPBufTag<cr>
+nmap <Leader>p :CtrlP<cr>
+nmap <Leader>m :CtrlPMRUFiles<cr>
+nmap <Leader>w :Wall<cr>
+nmap <Leader>f :tag<space>
+nmap <Leader>sn :e ~/.vim/snippets/
+imap jk <esc>
+
+"==Laravel specific mappings
+nmap <Leader>lr :e app/Http/routes.php<cr>
+nmap <Leader>lm :!php artisan make:
+" nmap <Leader><Leader>c :CtrlP<cr>app/Http/Controllers/
+" nmap <Leader><Leader>m :CtrlP<cr>app/
+" nmap <Leader><Leader>v :CtrlP<cr>resources/views/
+" nmap <Leader><Leader>l :CtrlP<cr>resources/lang/
+nmap <Leader><Leader>c :e app/Http/Controllers/<cr>
+nmap <Leader><Leader>m :e app/<cr>
+nmap <Leader><Leader>v :e resources/views/<cr>
+nmap <Leader><Leader>l :e resources/lang/<cr>
+
+
+"===========CUSTOM PLUGINS SETTINGS=========="
+let g:ctrlp_custom_ignore = '(node_modules|DS_Store|\.git|tags|\.idea)'
+let g:ctrlp_match_window = 'top,order:ttb,min:1,max:20,results:20'
+let NERDTreeHijackNetrw = 0
+let NERDTreeShowHidden = 1
+
+" Greplace.vim
+" We use AG for the search
+set grepprg=ag
+let g:grep_cmd_opts = '--line-numbers --noheading'
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => MISC
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remove the Windows ^M - when the encodings gets messed up
-noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+noremap <Leader>f mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 "Quickly open a buffer for scripbble
 map <leader>q :e ~/buffer<cr>
@@ -439,13 +490,13 @@ map <leader>q :e ~/buffer<cr>
 " => SAVE/RESTORE LAST SESSION
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Go to last file(s) if invoked without arguments.
-autocmd VimLeave * nested if (!isdirectory($HOME . "/.vim")) |
-  \ call mkdir($HOME . "/.vim") |
-  \ endif |
-  \ execute "mksession! " . $HOME . "/.vim/Session.vim"
-
-autocmd VimEnter * nested if argc() == 0 && filereadable($HOME . "/.vim/Session.vim") |
-  \ execute "source " . $HOME . "/.vim/Session.vim"
+" autocmd VimLeave * nested if (!isdirectory($HOME . "/.vim")) |
+"   \ call mkdir($HOME . "/.vim") |
+"   \ endif |
+"   \ execute "mksession! " . $HOME . "/.vim/Session.vim"
+"
+" autocmd VimEnter * nested if argc() == 0 && filereadable($HOME . "/.vim/Session.vim") |
+"   \ execute "source " . $HOME . "/.vim/Session.vim"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => LOCAL CONFIG
