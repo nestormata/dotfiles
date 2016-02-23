@@ -123,8 +123,8 @@ augroup END
 let g:is_posix = 1
 
 " Softtabs, 2 spaces
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
 set shiftround
 set expandtab
 
@@ -156,19 +156,6 @@ set numberwidth=5
 " Tab completion
 " will insert tab at beginning of line,
 " will use completion if not at beginning
-<<<<<<< HEAD
-set wildmode=list:longest,list:full
-function! InsertTabWrapper()
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-        return "\<Tab>"
-    else
-        return "\<C-p>"
-    endif
-endfunction
-inoremap <Tab> <C-r>=InsertTabWrapper()<CR>
-inoremap <S-Tab> <C-n>
-=======
 " set wildmode=list:longest,list:full
 " function! InsertTabWrapper()
 "     let col = col('.') - 1
@@ -186,12 +173,10 @@ let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"
 
 " Index ctags from any project, including those outside Rails
 map <Leader>ct :!ctags -R --exclude='node_modules/**' --exclude='build/**' --exclude='*.js' .<CR>
->>>>>>> 2c3cffc (Added my customizations)
 
 " Switch between the last two files
 nnoremap <Leader><Leader> <C-^>
 
-<<<<<<< HEAD
 " vim-test mappings
 nnoremap <silent> <Leader>t :TestFile<CR>
 nnoremap <silent> <Leader>s :TestNearest<CR>
@@ -200,16 +185,7 @@ nnoremap <silent> <Leader>a :TestSuite<CR>
 nnoremap <silent> <Leader>gt :TestVisit<CR>
 
 " Run commands that require an interactive shell
-nnoremap <Leader>r :RunInInteractiveShell<Space>
-=======
-" vim-rspec mappings
-"nnoremap <Leader>t :call RunCurrentSpecFile()<CR>
-"nnoremap <Leader>s :call RunNearestSpec()<CR>
-"nnoremap <Leader>l :call RunLastSpec()<CR>
-
-" Run commands that require an interactive shell
 nnoremap <Leader>ri :RunInInteractiveShell<space>
->>>>>>> 2c3cffc (Added my customizations)
 
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
@@ -227,14 +203,12 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
-<<<<<<< HEAD
 " Move between linting errors
 nnoremap ]r :ALENextWrap<CR>
 nnoremap [r :ALEPreviousWrap<CR>
 
 " Map Ctrl + p to open fuzzy find (FZF)
 nnoremap <c-p> :Files<cr>
-=======
 " configure syntastic syntax checking to check on open as well as save
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -246,7 +220,9 @@ let g:syntastic_eruby_ruby_quiet_messages =
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
->>>>>>> 2c3cffc (Added my customizations)
+" Syntastic PHP
+let g:syntastic_php_checkers=['php', 'phpcs']
+let g:syntastic_php_phpcs_args='--standard=PSR2 -n'
 
 " Set spellfile to location that is guaranteed to exist, can be symlinked to
 " Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.
