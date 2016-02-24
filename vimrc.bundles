@@ -52,6 +52,7 @@ Plug 'tpope/vim-surround'
 "Plug 'vim-ruby/vim-ruby'
 Plug 'vim-scripts/tComment'
 Plug 'msanders/snipmate.vim'
+Plug 'terryma/vim-multiple-cursors'
 
 " THEMES=======
 Plug 'w0ng/vim-hybrid'
