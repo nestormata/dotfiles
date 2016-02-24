@@ -57,6 +57,7 @@ Plug 'tpope/vim-surround'
 "Plug 'vim-ruby/vim-ruby'
 Plug 'vim-scripts/tComment'
 Plug 'msanders/snipmate.vim'
+Plug 'terryma/vim-multiple-cursors'
 
 if g:has_async
   Plug 'dense-analysis/ale'
