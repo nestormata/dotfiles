@@ -114,7 +114,7 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag -Q -l --nocolor --hidden -g "" %s'
+  let g:ctrlp_user_command = 'ag -Q -l --skip-vcs-ignores --nocolor --hidden -g "" %s'
 
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
@@ -183,6 +183,7 @@ let g:syntastic_eruby_ruby_quiet_messages =
     \ {"regex": "possibly useless use of a variable in void context"}
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%{fugitive#statusline()}
 set statusline+=%*
 " Syntastic PHP
 let g:syntastic_php_checkers=['php', 'phpcs']
@@ -500,6 +501,12 @@ map <leader>q :e ~/buffer<cr>
 "
 " autocmd VimEnter * nested if argc() == 0 && filereadable($HOME . "/.vim/Session.vim") |
 "   \ execute "source " . $HOME . "/.vim/Session.vim"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => THEMES
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set background=dark "this is for hybrid theme
+colorscheme gruvbox " we have gruvbox, hybrid or monokai
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => LOCAL CONFIG
