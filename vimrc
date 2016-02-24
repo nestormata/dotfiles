@@ -6,6 +6,12 @@
 " - :Gsearch to search and replace in the project directory
 "====================================================="
 
+" REQUIREMENTS
+"====================================================="
+" - Install PHP Code Sniffer https://github.com/squizlabs/PHP_CodeSniffer
+" - Install Silver Search https://github.com/ggreer/the_silver_searcher
+"====================================================="
+
 
 " Leader
 fun! MySys()
@@ -181,10 +187,6 @@ let g:syntastic_check_on_open=1
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
 let g:syntastic_eruby_ruby_quiet_messages =
     \ {"regex": "possibly useless use of a variable in void context"}
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%{fugitive#statusline()}
-set statusline+=%*
 " Syntastic PHP
 let g:syntastic_php_checkers=['php', 'phpcs']
 let g:syntastic_php_phpcs_args='--standard=PSR2 -n'
@@ -215,7 +217,7 @@ function! CmdLine(str)
     exe "menu Foo.Bar :" . a:str
     emenu Foo.Bar
     unmenu Foo
-endfunction 
+endfunction
 
 " From an idea by Michael Naumann
 function! VisualSearch(direction) range
@@ -259,7 +261,7 @@ cnoremap <C-N> <Down>
 
 func! Cwd()
   let cwd = getcwd()
-  return "e " . cwd 
+  return "e " . cwd
 endfunc
 
 func! DeleteTillSlash()
@@ -275,7 +277,7 @@ func! DeleteTillSlash()
     else
       let g:cmd_edited = substitute(g:cmd, "\\(.*\[\\\\\]\\).*\[\\\\\]", "\\1", "")
     endif
-  endif   
+  endif
   return g:cmd_edited
 endfunc
 
@@ -309,9 +311,9 @@ map <left> :bp<cr>
 
 " Tab configuration
 map <leader>tn :tabnew %<cr>
-map <leader>te :tabedit 
+map <leader>te :tabedit
 map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove 
+map <leader>tm :tabmove
 
 " When pressing <leader>cd switch to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>
@@ -337,22 +339,12 @@ function! <SID>BufcloseCloseIt()
    endif
 endfunction
 
-" Specify the behavior when switching between buffers 
+" Specify the behavior when switching between buffers
 try
   set switchbuf=usetab
   set stal=2
 catch
 endtry
-
-""""""""""""""""""""""""""""""
-" => Statusline
-""""""""""""""""""""""""""""""
-" Always hide the statusline
-set laststatus=2
-
-" Format the statusline
-set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
-
 
 function! CurDir()
     let curdir = substitute(getcwd(), '/Users/nestor/', "~/", "g")
@@ -502,6 +494,20 @@ map <leader>q :e ~/buffer<cr>
 " autocmd VimEnter * nested if argc() == 0 && filereadable($HOME . "/.vim/Session.vim") |
 "   \ execute "source " . $HOME . "/.vim/Session.vim"
 
+""""""""""""""""""""""""""""""
+" => Statusline
+""""""""""""""""""""""""""""""
+" Always hide the statusline
+set laststatus=2
+
+" Format the statusline
+set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%{fugitive#statusline()}
+set statusline+=%*
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => THEMES
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -514,3 +520,4 @@ colorscheme gruvbox " we have gruvbox, hybrid or monokai
 if filereadable($HOME . "/.vimrc.local")
   source ~/.vimrc.local
 endif
+
