@@ -504,7 +504,7 @@ set laststatus=2
 set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%{fugitive#statusline()}
+set statusline+=%{fugitive#statusline()}
 set statusline+=%*
 
 
