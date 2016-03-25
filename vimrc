@@ -38,21 +38,23 @@ autocmd! bufwritepost .vimrc* source ~/.vimrc
 
 set nobackup
 set nowritebackup
-set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
+set noswapfile          " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
 set history=300
-set ruler         " show the cursor position all the time
-set showcmd       " display incomplete commands
-set incsearch     " do incremental searching
-set autowrite     " Automatically :write before running commands
+set ruler               " show the cursor position all the time
+set showcmd             " display incomplete commands
+set incsearch           " do incremental searching
+set autowrite           " Automatically :write before running commands
+set autowriteall        " Automatically write the file when switching
 set whichwrap+=<,>,h,l
-set ignorecase "Ignore case when searching
-set hlsearch "Highlight search things
-set magic "Set magic on, for regular expressions
-set showmatch "Show matching bracets when text indicator is over them
-set mat=2 "How many tenths of a second to blink
-set wildmenu "Turn on WiLd menu
-set cmdheight=2 "The commandbar height
-set hid "Change buffer - without saving
+set ignorecase          "Ignore case when searching
+set hlsearch            "Highlight search things
+set magic               "Set magic on, for regular expressions
+set showmatch           "Show matching bracets when text indicator is over them
+set mat=2               "How many tenths of a second to blink
+set wildmenu            "Turn on WiLd menu
+set cmdheight=2         "The commandbar height
+set hid                 "Change buffer - without saving
+set complete=.,w,b,u    "Set our desire autocomplete
 " Set 7 lines to the curors - when moving vertical..
 set so=7
 " Set backspace config
@@ -184,12 +186,16 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_check_on_open=1
+let g:syntastic_error_symbol = "✗"
+let g:syntastic_warning_symbol = "⚠"
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
 let g:syntastic_eruby_ruby_quiet_messages =
     \ {"regex": "possibly useless use of a variable in void context"}
 " Syntastic PHP
 let g:syntastic_php_checkers=['php', 'phpcs']
 let g:syntastic_php_phpcs_args='--standard=PSR2 -n'
+" Syntastic C++
+let g:syntastic_cpp_compiler_options = "-std=c++11 -Wall -Wextra -Wpedantic"
 
 " Set spellfile to location that is guaranteed to exist, can be symlinked to
 " Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.
@@ -472,6 +478,26 @@ let NERDTreeShowHidden = 1
 " We use AG for the search
 set grepprg=ag
 let g:grep_cmd_opts = '--line-numbers --noheading'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => PHP Mappings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! IPhpInsertUse()
+    call PhpInsertUse()
+    call feedkeys('a',  'n')
+endfunction
+function! IPhpExpandClass()
+    call PhpExpandClass()
+    call feedkeys('a', 'n')
+endfunction
+autocmd FileType php inoremap <Leader>n <Esc>:call IPhpInsertUse()<CR>
+autocmd FileType php noremap <Leader>n :call PhpInsertUse()<CR>
+autocmd FileType php inoremap <Leader>nf <Esc>:call IPhpExpandClass()<CR>
+autocmd FileType php noremap <Leader>nf :call PhpExpandClass()<CR>
+
+"Sort PHP use statements
+"http://stackoverflow.com/questions/11531073/how-do-you-sort-a-range-of-lines-by-length
+vmap <Leader>su ! awk '{ print length(), $0 \| "sort -n \| cut -d\\  -f2-" }'<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => MISC

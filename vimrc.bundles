@@ -51,8 +51,14 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 "Plug 'vim-ruby/vim-ruby'
 Plug 'vim-scripts/tComment'
-Plug 'msanders/snipmate.vim'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
 Plug 'terryma/vim-multiple-cursors'
+" PHP======
+Plug 'StanAngeloff/php.vim'
+Plug 'arnaud-lb/vim-php-namespace'
+Plug 'ervandew/supertab'
 
 " THEMES=======
 Plug 'w0ng/vim-hybrid'
