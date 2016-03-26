@@ -59,6 +59,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'StanAngeloff/php.vim'
 Plug 'arnaud-lb/vim-php-namespace'
 Plug 'ervandew/supertab'
+Plug 'stephpy/vim-php-cs-fixer'
 
 " THEMES=======
 Plug 'w0ng/vim-hybrid'
