@@ -64,6 +64,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'StanAngeloff/php.vim'
 Plug 'arnaud-lb/vim-php-namespace'
 Plug 'ervandew/supertab'
+Plug 'stephpy/vim-php-cs-fixer'
 
 if g:has_async
   Plug 'dense-analysis/ale'
