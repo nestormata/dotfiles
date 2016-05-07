@@ -58,21 +58,28 @@ Plug 'tpope/vim-surround'
 Plug 'vim-scripts/tComment'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
-Plug 'garbas/vim-snipmate'
+"Plug 'garbas/vim-snipmate'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 " PHP======
 Plug 'StanAngeloff/php.vim'
 Plug 'arnaud-lb/vim-php-namespace'
 Plug 'ervandew/supertab'
 Plug 'stephpy/vim-php-cs-fixer'
+Plug 'tobyS/vmustache'
+Plug 'tobyS/pdv'
 
 if g:has_async
   Plug 'dense-analysis/ale'
 endif
 " THEMES=======
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'w0ng/vim-hybrid'
 Plug 'sickill/vim-monokai'
 Plug 'morhetz/gruvbox'
+Plug 'kristijanhusak/vim-hybrid-material'
 
 if filereadable(expand("~/.vimrc.bundles.local"))
   source ~/.vimrc.bundles.local

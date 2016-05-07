@@ -4,6 +4,7 @@
 "   of the screen
 " - :Ag to search in the project directory
 " - :Gsearch to search and replace in the project directory
+" - ,d creates the function/class documentation with the arguments
 "====================================================="
 set encoding=utf-8
 
@@ -515,6 +516,13 @@ let NERDTreeShowHidden = 1
 set grepprg=ag
 let g:grep_cmd_opts = '--line-numbers --noheading'
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Snippets
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<tab>"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -556,6 +564,15 @@ nnoremap <silent><leader>pf :call PhpCsFixerFixFile()<CR>
 "http://stackoverflow.com/questions/11531073/how-do-you-sort-a-range-of-lines-by-length
 vmap <Leader>su ! awk '{ print length(), $0 \| "sort -n \| cut -d\\  -f2-" }'<cr>
 
+let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
+nnoremap <Leader>d :call pdv#DocumentWithSnip()<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Several files tabs configuration
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd Filetype html setlocal ts=4 sts=4 sw=4
+autocmd Filetype javascript setlocal ts=4 sts=4 sw=4
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => MISC
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -594,8 +611,13 @@ set statusline+=%*
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => THEMES
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set guifont=Source\ Code\ Pro\ for\ Powerline
+let g:airline_powerline_fonts=1
+let g:enable_bold_font = 1 " This is for hybrid material
+"let g:airline_theme = "hybrid"
 set background=dark "this is for hybrid theme
-colorscheme gruvbox " we have gruvbox, hybrid or monokai
+"colorscheme gruvbox " we have gruvbox, hybrid or monokai
+colorscheme gruvbox " we have gruvbox, hybrid, monokai, hybrid_material, hybrid_reverse
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => LOCAL CONFIG
