@@ -99,6 +99,7 @@ augroup vimrcEx
   autocmd BufRead,BufNewFile Appraisals set filetype=ruby
   autocmd BufRead,BufNewFile *.md set filetype=markdown
   autocmd BufRead,BufNewFile .{jscs,jshint,eslint}rc set filetype=json
+  autocmd BufRead,BufNewFile {.env,.env.*} set filetype=dosini
 augroup END
 
 " When the type of shell script is /bin/sh, assume a POSIX-compatible
@@ -123,7 +124,7 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag -Q -l --skip-vcs-ignores --nocolor --hidden -g "" %s'
+  let g:ctrlp_user_command = 'ag -Q -l -U --nocolor --hidden -g "" %s'
 
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
@@ -583,6 +584,9 @@ set background=dark "this is for hybrid theme
 "colorscheme gruvbox " we have gruvbox, hybrid or monokai
 colorscheme gruvbox " we have gruvbox, hybrid, monokai, hybrid_material, hybrid_reverse
 
+highlight OverLength ctermbg=darkred ctermfg=white guibg=#592929
+"match OverLength /\%81v.\+/
+match OverLength /\%>80v.\+/
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => LOCAL CONFIG
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
