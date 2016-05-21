@@ -108,6 +108,7 @@ augroup vimrcEx
   autocmd BufRead,BufNewFile gitconfig.local set filetype=gitconfig
   autocmd BufRead,BufNewFile tmux.conf.local set filetype=tmux
   autocmd BufRead,BufNewFile vimrc.local set filetype=vim
+  autocmd BufRead,BufNewFile {.env,.env.*} set filetype=dosini
 augroup END
 
 " ALE linting events
@@ -619,6 +620,9 @@ set background=dark "this is for hybrid theme
 "colorscheme gruvbox " we have gruvbox, hybrid or monokai
 colorscheme gruvbox " we have gruvbox, hybrid, monokai, hybrid_material, hybrid_reverse
 
+highlight OverLength ctermbg=darkred ctermfg=white guibg=#592929
+"match OverLength /\%81v.\+/
+match OverLength /\%>80v.\+/
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => LOCAL CONFIG
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
