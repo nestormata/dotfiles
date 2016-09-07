@@ -190,6 +190,8 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_check_on_open=1
 let g:syntastic_error_symbol = "✗"
 let g:syntastic_warning_symbol = "⚠"
+let g:syntastic_style_error_symbol = "✖︎"
+let g:syntastic_style_warning_symbol = "∙∙"
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
 let g:syntastic_eruby_ruby_quiet_messages =
     \ {"regex": "possibly useless use of a variable in void context"}
