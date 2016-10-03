@@ -5,6 +5,13 @@
 " - :Ag to search in the project directory
 " - :Gsearch to search and replace in the project directory
 " - ,d creates the function/class documentation with the arguments
+"
+" - ,r run GDB
+" - ,c continue GDB
+" - ,s step GDB
+" - ,p print variable under cursor GDB
+" - ,b set (not toggle) breakpoint GDB
+" - write clear in GDB prompt to clear the breakpoint
 "====================================================="
 
 " REQUIREMENTS
@@ -325,6 +332,11 @@ map <leader>te :tabedit
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
 
+" Conque GDB debugger
+let g:ConqueTerm_Color = 2         " 1: strip color after 200 lines, 2: always with color
+let g:ConqueTerm_CloseOnEnd = 1    " close conque when program ends running
+let g:ConqueTerm_StartMessages = 0 " display warning messages if conqueTerm is configured incorrectly  
+
 " When pressing <leader>cd switch to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>
 
@@ -579,6 +591,12 @@ set statusline+=%*
 " => THEMES
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set guifont=Source\ Code\ Pro\ for\ Powerline
+if has("gui_running")
+   let s:uname = system("uname")
+   if s:uname == "Darwin\n"
+      set guifont=Source\ Code\ Pro\ for\ Powerline
+   endif
+endif
 let g:airline_powerline_fonts=1
 let g:enable_bold_font = 1 " This is for hybrid material
 "let g:airline_theme = "hybrid"
