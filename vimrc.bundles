@@ -60,9 +60,9 @@ Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 "Plug 'garbas/vim-snipmate'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'SirVer/ultisnips'
+"Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-" PHP======
+" PHP ======
 Plug 'StanAngeloff/php.vim'
 Plug 'arnaud-lb/vim-php-namespace'
 Plug 'ervandew/supertab'
@@ -73,7 +73,10 @@ Plug 'tobyS/pdv'
 if g:has_async
   Plug 'dense-analysis/ale'
 endif
-" THEMES=======
+" C/C++ ======
+Plug 'vim-scripts/Conque-GDB'
+
+" THEMES =======
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'w0ng/vim-hybrid'
