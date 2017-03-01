@@ -148,6 +148,26 @@ regardless of the file name:
     set cinoptions=:0,t0,+4,(4
     autocmd BufNewFile,BufRead *.[ch] setlocal sw=0 ts=8 noet
 
+Using Bash on Windows 10
+-------------
+* Create link calling:
+
+```
+"C:\Program Files\ConEmu\ConEmu64.exe" -basic -run {bash}
+```
+
+* Add at the end of the ~/.bashrc
+```
+zsh
+```
+
+* Set the variable CONEMUBUILD in your local ~/.zshrc.local
+```
+CONEMUBUILD=1
+```
+
+
+
 What's in it?
 -------------
 
