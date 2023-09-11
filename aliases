@@ -15,5 +15,8 @@ alias s="rspec"
 # Pretty print the path
 alias path='echo $PATH | tr -s ":" "\n"'
 
+# Sail support in local project
+alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
+
 # Include custom aliases
 [[ -f ~/.aliases.local ]] && source ~/.aliases.local

@@ -83,7 +83,7 @@ Plug 'tobyS/vmustache'
 Plug 'tobyS/pdv'
 
 " C/C++ ======
-Plug 'vim-scripts/Conque-GDB'
+"Plug 'vim-scripts/Conque-GDB'
 
 " THEMES =======
 Plug 'vim-airline/vim-airline'

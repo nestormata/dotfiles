@@ -49,3 +49,20 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+export PATH="/opt/homebrew/opt/php@7.2/bin:$PATH"
+export PATH="/opt/homebrew/opt/php@7.2/sbin:$PATH"
+
+#If you need to have php@7.2 first in your PATH, run:
+#echo 'export PATH="/opt/homebrew/opt/php@7.2/bin:$PATH"' >> ~/.zshrc
+#echo 'export PATH="/opt/homebrew/opt/php@7.2/sbin:$PATH"' >> ~/.zshrc
+#For compilers to find php@7.2 you may need to set:
+#export LDFLAGS="-L/opt/homebrew/opt/php@7.2/lib"
+#export CPPFLAGS="-I/opt/homebrew/opt/php@7.2/include"
+#export PATH="/opt/homebrew/opt/php@7.2/bin:$PATH"
+#export PATH="/opt/homebrew/opt/php@7.2/sbin:$PATH"
+alias hatchery='/Users/nestor/docker/hatchery/entrypoint.sh'
+alias get_idf='. $HOME/esp/esp-idf/export.sh'

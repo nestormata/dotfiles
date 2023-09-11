@@ -1,7 +1,27 @@
-#!/bin/sh
+#!/bin/bash
+#
+# Pre-Commit hook script for WordPress Themes to check your code against coding standards and formatting.
+#
+# Requirements:
+#   PHP Code Sniffer https://github.com/squizlabs/PHP_CodeSniffer
+#   Twig Code Sniffer https://github.com/friendsoftwig/twigcs
+#   Prettier https://github.com/prettier/prettier
+#   ESLint https://github.com/eslint/eslint
+#   Stylelint https://github.com/stylelint/stylelint
+# 
+set -e
 
-local_hook="$HOME"/.git_template.local/hooks/pre-commit
+# Setup
+TWIGCS_BIN="./vendor/bin/twigcs"
+TWIGCS_RULESET="./.twigcs"
+PHPCS_BIN="./vendor/bin/phpcs"
+PHPCBF_BIN="./vendor/bin/phpcbf"
+CUSTOM_RULESET="./phpcs.xml"
 
-if [ -f "$local_hook" ]; then
-  . "$local_hook"
-fi
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM HEAD -- web/app/themes/)
+
+STANDARD="PSR12"
+EXTENSIONS=('php')
+ENCODING="utf-8"
+
+exit 0
