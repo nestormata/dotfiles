@@ -93,7 +93,7 @@ if g:has_async
   Plug 'dense-analysis/ale'
 endif
 " C/C++ ======
-Plug 'vim-scripts/Conque-GDB'
+"Plug 'vim-scripts/Conque-GDB'
 
 " THEMES =======
 Plug 'vim-airline/vim-airline'

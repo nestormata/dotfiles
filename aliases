@@ -20,6 +20,8 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias -- -="cd -"
+# Sail support in local project
+alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
 
 # Include custom aliases
 if [[ -f ~/.aliases.local ]]; then
